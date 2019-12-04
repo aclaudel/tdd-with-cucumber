@@ -84,3 +84,13 @@ public class AtmCucumberRunner { }
 ```
 
 ###Start the TDD
+
+So let's start TDDing our scenarios.
+First thing to do is defining our backlog with the *@todo* tag.
+We're going to tag every scenario, except the first one which will be our starting point, with *@wip*. 
+```gherkin
+@wip
+Scenario: Deposit money to an account
+```
+
+The test will be ignored
