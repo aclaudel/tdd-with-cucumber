@@ -1,4 +1,4 @@
-# Outside-in TDD with Cucumber
+# TDD with Cucumber
 
 ## Define your actions
 - Create a feature file `Deposit.feature`
@@ -94,11 +94,13 @@ Scenario: Deposit money to an account
 ```
 
 We can now run the `AtmCucumberRunner` in order to execute our scenario.
-<!-- TODO add image here -->
+ago
+![first-scenario-execution](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/first-scenario-execution.png)
 
 The scenario will simply be ignored because there is no step implementation and we're not in `strict` mode.
 We can easily create the steps definition directly from the feature file using Intellij. 
 <!-- TODO add image here -->
+![create-step-def-shortcut](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/create-step-def-shortcut.png)
 
 Here are the empty definitions:
 
@@ -127,7 +129,10 @@ public void the_money_has_been_added_to_the_account() {
 ### Implement step definitions
 
 We can now start to implement the step definitions.
-We'll go bottom-up, so we'll start with `Then the money has been added to the account`.
+We'll go bottom-up, so we'll start with by the step
+```gherkin
+Then the money has been added to the account
+```
 
 The assertion will check  if we called the `AccountRepository` using the correct account id and amount of money.
 ```java
@@ -187,6 +192,6 @@ public void deposit(UUID accountId, int amountToDeposit) {
 ```
 
 And make it pass !
-<!-- TODO add image here -->
+![passing-scenario](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/passing-scenario.png)
 
 The scenario is now implemented, so we can tag it as `@done`.
