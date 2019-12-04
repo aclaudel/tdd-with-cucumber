@@ -70,8 +70,8 @@ Scenario: The deposit should fail if the account does not exist
 When working on our local machine, we may not want to run all the possible tests, especially when doing TDD.
 We only want to execute a small set of tests, that are linked to the feature we are implementing. 
 
-By tagging scenarios, we can easily exclude unrelated test and then reduce the feedback loop of the work in progress.
-Once the feature is implemented locally, we'll then run the entire test suite before pushing to the CI platform.
+By tagging scenarios, we can easily exclude unrelated test and then reduce the feedback loop for the work in progress.
+Once the feature is implemented locally, we'll run the entire test suite this time, in order to safely push to the CI platform.
 
 Here is a cucumber runner that only execute the scenarios for the next iteration,
 that are either in work in progress or already implemented.
@@ -87,19 +87,17 @@ public class AtmCucumberRunner { }
 
 So let's start TDDing our scenarios.
 First thing to do is defining our backlog with the `@todo` tag.
-We're going to tag every scenario, except the first one which will be our starting point, with `@wip`. 
+We're going to tag every scenario, except the first one which will be our starting point. 
 ```gherkin
 @wip
 Scenario: Deposit money to an account
 ```
 
 We can now run the `AtmCucumberRunner` in order to execute our scenario.
-ago
 ![first-scenario-execution](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/first-scenario-execution.png)
 
-The scenario will simply be ignored because there is no step implementation and we're not in `strict` mode.
-We can easily create the steps definition directly from the feature file using Intellij. 
-<!-- TODO add image here -->
+The scenario is currently ignored because there is no step implementation and we're not in `strict` mode.
+Step definitions can be directly from the feature file using Intellij. 
 ![create-step-def-shortcut](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/create-step-def-shortcut.png)
 
 Here are the empty definitions:
@@ -128,8 +126,7 @@ public void the_money_has_been_added_to_the_account() {
 
 ### Implement step definitions
 
-We can now start to implement the step definitions.
-We'll go bottom-up, so we'll start with by the step
+We'll implement the steps bottom-up, so we'll start with
 ```gherkin
 Then the money has been added to the account
 ```
@@ -147,8 +144,8 @@ public void the_money_has_been_added_to_the_account() {
 }
 ```
 
-Here we added thetest variables `accountId`, `initialBalance` and `amountToDeposit`.
-These variables will be set in the `Given` steps like this:
+Here we added the test variables `accountId`, `initialBalance` and `amountToDeposit`.
+These variables will be set in the `Given` steps
 ```java
 @Given("an account")
 public void an_account() {
@@ -164,7 +161,7 @@ public void an_amount_of_money() {
 }
 ```
 
-Now we simply add the deposit action in `When`
+Now we call the deposit method in `When`
 ```java
 @When("the deposit is made")
 public void the_deposit_is_made() {
@@ -172,7 +169,7 @@ public void the_deposit_is_made() {
 }
 ```
 
-And setup our mock and SUT
+And setup our SUT
 ```java
 @Before
 public void before() {
@@ -194,4 +191,15 @@ public void deposit(UUID accountId, int amountToDeposit) {
 And make it pass !
 ![passing-scenario](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/passing-scenario.png)
 
-The scenario is now implemented, so we can tag it as `@done`.
+The scenario is now implemented, so we can tag it as `@done` and start a new scenario from our backlog.
+```gherkin
+@done
+Scenario: Deposit money to an account
+  ...
+@wip
+Scenario: The deposit should fail if the account does not exist
+  ...
+```
+
+If we run our tests again, then the new scenario will be executed.
+![new-scenario-from-backlog](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/new-scenario-from-backlog.png)
