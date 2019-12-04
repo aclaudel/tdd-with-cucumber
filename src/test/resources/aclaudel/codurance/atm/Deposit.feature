@@ -8,7 +8,7 @@ Feature: Money deposit
     When the deposit is made
     Then the money has been added to the account
 
-  @todo
+  @wip
   Scenario: The deposit should fail if the account does not exist
     Given a not existing account
     Then the deposit should generate the error AccountNotFound
