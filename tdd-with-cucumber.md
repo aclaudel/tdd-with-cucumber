@@ -85,6 +85,8 @@ public class AtmCucumberRunner { }
 
 ###Start the TDD
 
+#### Create empty step definitions
+
 So let's start TDDing our scenarios.
 First thing to do is defining our backlog with the *@todo* tag.
 We're going to tag every scenario, except the first one which will be our starting point, with *@wip*. 
@@ -93,4 +95,100 @@ We're going to tag every scenario, except the first one which will be our starti
 Scenario: Deposit money to an account
 ```
 
-The test will be ignored
+We can now run the `AtmCucumberRunner` in order to execute our scenario.
+<!-- TODO add image here -->
+
+The scenario will simply be ignored because there is no step implementation and we're not in *strict* mode.
+We can easily create the steps definition directly from the feature file using Intellij. 
+<!-- TODO add image here -->
+
+Here are the empty definitions:
+
+```java
+@Given("an account")
+public void an_account() {
+
+}
+
+@And("an amount of money")
+public void an_amount_of_money() {
+
+}
+
+@When("the deposit is made")
+public void the_deposit_is_made() {
+
+}
+
+@Then("the money has been added to the account")
+public void the_money_has_been_added_to_the_account() {
+
+}
+```
+
+#### Implement step definitions
+
+We can now start to implement the step definitions.
+We'll go bottom-up, so we'll start with `Then the money has been added to the account`.
+
+The assertion will check  if we called the `AccountRepository` using the correct account id and amount of money.
+```java
+@Then("the money has been added to the account")
+public void the_money_has_been_added_to_the_account() {
+    ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
+    verify(accountRepositoryMock).save(accountCaptor.capture());
+    
+    Account savedAccount = accountCaptor.getValue();
+    assertEquals(accountId, savedAccount.getId());
+    assertEquals(initialBalance + amountToDeposit, savedAccount.getBalance());
+}
+```
+
+Here we added some test variables, like `accountId`, `initialBalance` or `amountToDeposit`.
+These variables will be set in the `Given` steps like this:
+```java
+@Given("an account")
+public void an_account() {
+    accountId = AN_ACCOUNT_ID;
+    initialBalance = DEFAULT_INITIAL_BALANCE;
+    Account account = new Account(accountId, initialBalance);
+    given(accountRepositoryMock.getById(accountId)).willReturn(account);
+}
+
+@And("an amount of money")
+public void an_amount_of_money() {
+    amountToDeposit = SOME_MONEY;
+}
+```
+
+Now we simply add the deposit action in `When`
+```java
+@When("the deposit is made")
+public void the_deposit_is_made() {
+    atm.deposit(accountId, amountToDeposit);
+}
+```
+
+And setup our mock and SUT
+```java
+@Before
+public void before() {
+    accountRepositoryMock = mock(AccountRepository.class);
+    atm = new Atm(accountRepositoryMock);
+}
+```
+
+We can run the test to see it fail and implement the deposit.
+```java
+public void deposit(UUID accountId, int amountToDeposit) {
+    var account = accountRepository.getById(accountId);
+    var newBalance = account.getBalance() + amountToDeposit;
+    account.setBalance(newBalance);
+    accountRepository.save(account);
+}
+```
+
+And make it pass !
+<!-- TODO add image here -->
+
+The scenario is now implemented, so we can tag it as `@done`.

@@ -1,7 +1,7 @@
 @delivery
 Feature: Money deposit
 
-  @wip
+  @done
   Scenario: Deposit money to an account
     Given an account
     And an amount of money
