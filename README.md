@@ -1,7 +1,7 @@
 # Outside-in TDD with Cucumber
 
 ## Define your actions
-- Create a feature file for the action, like Deposit.feature
+- Create a feature file `Deposit.feature`
 
 ```gherkin
 Feature: Deposit action
@@ -32,8 +32,8 @@ Scenario: The deposit should fail if the amount is negative
 
 Cucumber allow us to tag scenarios and features.
 
-A common use case for the tags is to add extra documentation, with *@happy_path* or *@ui.*  
-Tags are also handy in CI platform, where you can filter the test execution, with *@nighty* or *@slow*.
+A common use case for the tags is to add extra documentation, with `@happy_path` or `@ui`.  
+Tags are also handy in CI platform, where you can filter the test execution, with `@nighty` or `@slow`.
 
 Here we are going to use these tags to describe the lifecycle of our features.
 
@@ -51,7 +51,7 @@ Scenario: Deposit money to an account
   ...
 ```
 
-- Work In Progress scenarios (from @todo)
+- Work In Progress scenarios (from `@todo`)
 ```gherkin
 @wip
 Scenario: The deposit should fail if the amount is negative
@@ -59,7 +59,7 @@ Scenario: The deposit should fail if the amount is negative
   ...
 ```
 
-- Implemented scenarios (from @wip)
+- Implemented scenarios (from `@wip`)
 ```gherkin
 @done
 Scenario: The deposit should fail if the account does not exist
@@ -83,13 +83,11 @@ that are either in work in progress or already implemented.
 public class AtmCucumberRunner { }
 ```
 
-###Start the TDD
-
-#### Create empty step definitions
+### Create empty step definitions
 
 So let's start TDDing our scenarios.
-First thing to do is defining our backlog with the *@todo* tag.
-We're going to tag every scenario, except the first one which will be our starting point, with *@wip*. 
+First thing to do is defining our backlog with the `@todo` tag.
+We're going to tag every scenario, except the first one which will be our starting point, with `@wip`. 
 ```gherkin
 @wip
 Scenario: Deposit money to an account
@@ -98,7 +96,7 @@ Scenario: Deposit money to an account
 We can now run the `AtmCucumberRunner` in order to execute our scenario.
 <!-- TODO add image here -->
 
-The scenario will simply be ignored because there is no step implementation and we're not in *strict* mode.
+The scenario will simply be ignored because there is no step implementation and we're not in `strict` mode.
 We can easily create the steps definition directly from the feature file using Intellij. 
 <!-- TODO add image here -->
 
@@ -126,7 +124,7 @@ public void the_money_has_been_added_to_the_account() {
 }
 ```
 
-#### Implement step definitions
+### Implement step definitions
 
 We can now start to implement the step definitions.
 We'll go bottom-up, so we'll start with `Then the money has been added to the account`.
@@ -144,7 +142,7 @@ public void the_money_has_been_added_to_the_account() {
 }
 ```
 
-Here we added some test variables, like `accountId`, `initialBalance` or `amountToDeposit`.
+Here we added thetest variables `accountId`, `initialBalance` and `amountToDeposit`.
 These variables will be set in the `Given` steps like this:
 ```java
 @Given("an account")
@@ -178,7 +176,7 @@ public void before() {
 }
 ```
 
-We can run the test to see it fail and implement the deposit.
+We can run the test to see it fail and implement the deposit method.
 ```java
 public void deposit(UUID accountId, int amountToDeposit) {
     var account = accountRepository.getById(accountId);
