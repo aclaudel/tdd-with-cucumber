@@ -6,12 +6,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import static aclaudel.codurance.atm.context.AtmContext.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class DepositSteps {
-
-    private Exception generatedError;
 
     @When("the deposit is made")
     public void the_deposit_is_made() {
@@ -37,15 +35,4 @@ public class DepositSteps {
         }
     }
 
-    @Then("the error AccountNotFound is generated")
-    public void the_error_account_not_found_is_generated() {
-        assertNotNull(generatedError, "no error was thrown");
-        assertEquals(AccountNotFoundException.class, generatedError.getClass());
-    }
-
-    @Then("the error NegativeMoneyAmount is generated")
-    public void the_error_negative_money_amount_is_generated() {
-        assertNotNull(generatedError, "no error was thrown");
-        assertEquals(NegativeMoneyAmountException.class, generatedError.getClass());
-    }
 }
