@@ -21,4 +21,11 @@ public class Atm {
         account.setBalance(newBalance);
         accountRepository.save(account);
     }
+
+    public void withdraw(UUID accountId, int amountToWithdraw) {
+        var account = accountRepository.getById(accountId);
+        var newBalance = account.getBalance() - amountToWithdraw;
+        account.setBalance(newBalance);
+        accountRepository.save(account);
+    }
 }

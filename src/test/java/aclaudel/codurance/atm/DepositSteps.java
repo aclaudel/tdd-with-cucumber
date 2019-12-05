@@ -1,84 +1,26 @@
 package aclaudel.codurance.atm;
 
+import aclaudel.codurance.context.AtmContext;
 import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.mockito.ArgumentCaptor;
 
-import java.util.UUID;
-
-import static java.util.UUID.randomUUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class DepositSteps {
-    // constants
-    private static final int DEFAULT_INITIAL_BALANCE = 1;
-    public static final UUID AN_ACCOUNT_ID = randomUUID();
-    public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
 
-    // mocks
-    private AccountRepository accountRepositoryMock;
-
-    // SUT
-    private Atm atm;
-
-    // test variables
-    private UUID accountId;
-    private int amountToDeposit;
+public class DepositSteps extends AtmContext {
 
     @Before
     public void before() {
-        accountRepositoryMock = mock(AccountRepository.class);
-        atm = new Atm(accountRepositoryMock);
-    }
-
-    @Given("an account")
-    public void an_account() {
-        an_account_with_an_initial_balance(DEFAULT_INITIAL_BALANCE);
-    }
-
-    @Given("an account with an initial balance of {int}")
-    public void an_account_with_an_initial_balance(int initialBalance) {
-        accountId = AN_ACCOUNT_ID;
-        Account account = new Account(accountId, initialBalance);
-        given(accountRepositoryMock.getById(accountId)).willReturn(account);
-    }
-
-    @And("a negative amount of money")
-    public void a_negative_amount_of_money() {
-        an_amount_of_money_of_amount(NEGATIVE_AMOUNT_OF_MONEY);
-    }
-
-    @And("an amount of money of {int}")
-    public void an_amount_of_money_of_amount(int amountToDeposit) {
-        this.amountToDeposit = amountToDeposit;
-    }
-
-    @Given("a not existing account")
-    public void a_not_existing_account() {
-        accountId = AN_ACCOUNT_ID;
-        given(accountRepositoryMock.getById(accountId)).willReturn(null);
+        super.before();
     }
 
     @When("the deposit is made")
     public void the_deposit_is_made() {
-        atm.deposit(accountId, amountToDeposit);
-    }
-
-    @Then("the final account balance is {int}")
-    public void the_final_balance_has_been_updated(int finalBalance) {
-        ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
-        verify(accountRepositoryMock).save(accountCaptor.capture());
-
-        Account savedAccount = accountCaptor.getValue();
-        assertEquals(accountId, savedAccount.getId());
-        assertEquals(finalBalance, savedAccount.getBalance());
+        atm.deposit(accountId, amount);
     }
 
     @Then("the deposit should generate the error AccountNotFound")

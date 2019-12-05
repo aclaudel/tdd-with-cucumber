@@ -1,7 +1,7 @@
 @delivery
 Feature: Money withdraw
 
-  @wip
+  @done
   Scenario Outline: Withdraw money from an account
     Given an account with an initial balance of <initial balance>
     And an amount of money of <amount>
@@ -11,7 +11,7 @@ Feature: Money withdraw
       | initial balance  | amount | final balance |
       | 10               | 10     | 0             |
       | 15               | 5      | 10            |
-      | -10              | -10    | -20           |
+      | -10              | 10     | -20           |
 
   @todo
   Scenario: The withdraw should fail if the account does not exist
