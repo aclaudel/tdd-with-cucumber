@@ -7,6 +7,8 @@ public class ErrorContext {
     // variables
     private static Exception generatedError;
 
+    private ErrorContext() {}
+
     public static void execute_and_save_generated_exception(Runnable step) {
         try {
             step.run();
