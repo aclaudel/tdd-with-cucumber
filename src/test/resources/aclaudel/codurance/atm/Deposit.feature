@@ -1,12 +1,15 @@
 @delivery
 Feature: Money deposit
 
-  @done
-  Scenario: Deposit money to an account
-    Given an account
-    And an amount of money
+  @wip
+  Scenario Outline: Deposit money to an account
+    Given an account with an initial balance of <initial balance>
+    And an amount of money of <amount>
     When the deposit is made
-    Then the money has been added to the account
+    Then the final account balance is <final balance>
+    Examples:
+      | initial balance  | amount | final balance |
+      | 0                | 10     | 10            |
 
   @done
   Scenario: The deposit should fail if the account does not exist

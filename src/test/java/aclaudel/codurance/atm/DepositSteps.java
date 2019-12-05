@@ -20,7 +20,7 @@ public class DepositSteps {
     // constants
     private static final int DEFAULT_INITIAL_BALANCE = 1;
     public static final UUID AN_ACCOUNT_ID = randomUUID();
-    public static final int SOME_MONEY = 10;
+    public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
 
     // mocks
     private AccountRepository accountRepositoryMock;
@@ -31,7 +31,6 @@ public class DepositSteps {
     // test variables
     private UUID accountId;
     private int amountToDeposit;
-    private int initialBalance;
 
     @Before
     public void before() {
@@ -41,20 +40,24 @@ public class DepositSteps {
 
     @Given("an account")
     public void an_account() {
+        an_account_with_an_initial_balance(DEFAULT_INITIAL_BALANCE);
+    }
+
+    @Given("an account with an initial balance of {int}")
+    public void an_account_with_an_initial_balance(int initialBalance) {
         accountId = AN_ACCOUNT_ID;
-        initialBalance = DEFAULT_INITIAL_BALANCE;
         Account account = new Account(accountId, initialBalance);
         given(accountRepositoryMock.getById(accountId)).willReturn(account);
     }
 
-    @And("an amount of money")
-    public void an_amount_of_money() {
-        amountToDeposit = SOME_MONEY;
-    }
-
     @And("a negative amount of money")
     public void a_negative_amount_of_money() {
-        amountToDeposit = -SOME_MONEY;
+        an_amount_of_money_of_amount(NEGATIVE_AMOUNT_OF_MONEY);
+    }
+
+    @And("an amount of money of {int}")
+    public void an_amount_of_money_of_amount(int amountToDeposit) {
+        this.amountToDeposit = amountToDeposit;
     }
 
     @Given("a not existing account")
@@ -68,14 +71,14 @@ public class DepositSteps {
         atm.deposit(accountId, amountToDeposit);
     }
 
-    @Then("the money has been added to the account")
-    public void the_money_has_been_added_to_the_account() {
+    @Then("the final account balance is {int}")
+    public void the_final_balance_has_been_updated(int finalBalance) {
         ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
         verify(accountRepositoryMock).save(accountCaptor.capture());
 
         Account savedAccount = accountCaptor.getValue();
         assertEquals(accountId, savedAccount.getId());
-        assertEquals(initialBalance + amountToDeposit, savedAccount.getBalance());
+        assertEquals(finalBalance, savedAccount.getBalance());
     }
 
     @Then("the deposit should generate the error AccountNotFound")
@@ -87,4 +90,5 @@ public class DepositSteps {
     public void the_deposit_should_generate_the_error_negative_money_amount() {
         assertThrows(NegativeMoneyAmountException.class, this::the_deposit_is_made);
     }
+
 }
