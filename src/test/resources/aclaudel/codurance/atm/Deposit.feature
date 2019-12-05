@@ -16,10 +16,12 @@ Feature: Money deposit
   @done
   Scenario: The deposit should fail if the account does not exist
     Given a not existing account
-    Then the deposit should generate the error AccountNotFound
+    When we try to do the deposit
+    Then the error AccountNotFound is generated
 
   @done
   Scenario: The deposit should fail if the amount is negative
     Given an account
     And a negative amount of money
-    Then the deposit should generate the error NegativeMoneyAmount
+    When we try to do the deposit
+    Then the error NegativeMoneyAmount is generated
