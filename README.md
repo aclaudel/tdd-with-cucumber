@@ -79,6 +79,7 @@ that are either in work in progress or already implemented.
 @RunWith(Cucumber.class)
 @CucumberOptions(
     plugin = "pretty",
+    strict = true,
     tags = "(@delivery and (@wip or @done))")
 public class AtmCucumberRunner { }
 ```
@@ -93,10 +94,9 @@ We're going to tag every scenario, except the first one which will be our starti
 Scenario: Deposit money to an account
 ```
 
-We can now run the `AtmCucumberRunner` in order to execute our scenario.
+We can now run the `AtmCucumberRunner` declared above in order to execute our scenario.
 ![first-scenario-execution](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/first-scenario-execution.png)
 
-The scenario is currently ignored because there is no step implementation and we're not in `strict` mode.
 Step definitions can be directly from the feature file using Intellij. 
 ![create-step-def-shortcut](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/create-step-def-shortcut.png)
 
@@ -201,5 +201,5 @@ Scenario: The deposit should fail if the account does not exist
   ...
 ```
 
-If we run our tests again, then the new scenario will be executed.
+If we run our tests again, then both scenarios will be executed.
 ![new-scenario-from-backlog](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/new-scenario-from-backlog.png)
