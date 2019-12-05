@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -51,6 +52,12 @@ public class DepositSteps {
         amountToDeposit = SOME_MONEY;
     }
 
+    @Given("a not existing account")
+    public void a_not_existing_account() {
+        accountId = AN_ACCOUNT_ID;
+        given(accountRepositoryMock.getById(accountId)).willReturn(null);
+    }
+
     @When("the deposit is made")
     public void the_deposit_is_made() {
         atm.deposit(accountId, amountToDeposit);
@@ -64,5 +71,10 @@ public class DepositSteps {
         Account savedAccount = accountCaptor.getValue();
         assertEquals(accountId, savedAccount.getId());
         assertEquals(initialBalance + amountToDeposit, savedAccount.getBalance());
+    }
+
+    @Then("the deposit should generate the error AccountNotFound")
+    public void the_deposit_should_generate_the_error_account_not_found() {
+        assertThrows(AccountNotFoundException.class, this::the_deposit_is_made);
     }
 }

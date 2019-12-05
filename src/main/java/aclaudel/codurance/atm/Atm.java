@@ -11,6 +11,8 @@ public class Atm {
 
     public void deposit(UUID accountId, int amountToDeposit) {
         var account = accountRepository.getById(accountId);
+        if(account == null)
+            throw new AccountNotFoundException();
         var newBalance = account.getBalance() + amountToDeposit;
         account.setBalance(newBalance);
         accountRepository.save(account);
