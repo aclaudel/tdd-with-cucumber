@@ -22,6 +22,13 @@ public class AtmCucumberRunners {
     @CucumberOptions(
             plugin = "pretty",
             strict = true,
+            tags = "@wip")
+    public static class WipOnlyRunner {}
+
+    @RunWith(Cucumber.class)
+    @CucumberOptions(
+            plugin = "pretty",
+            strict = true,
             tags = "not @todo")
     public static class AllButTodoDeliveryRunner {}
 
