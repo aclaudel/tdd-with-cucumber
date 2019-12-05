@@ -10,6 +10,8 @@ Feature: Money deposit
     Examples:
       | initial balance  | amount | final balance |
       | 0                | 10     | 10            |
+      | 10               | 100    | 110           |
+      | -10              | 10    | 0              |
 
   @done
   Scenario: The deposit should fail if the account does not exist
