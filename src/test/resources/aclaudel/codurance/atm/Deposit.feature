@@ -1,4 +1,3 @@
-@delivery
 Feature: Money deposit
 
   @done
