@@ -13,7 +13,7 @@ Feature: Money withdraw
       | 15               | 5      | 10            |
       | -10              | 10     | -20           |
 
-  @todo
+  @done
   Scenario: The withdraw should fail if the account does not exist
     Given a not existing account
     Then the withdraw should generate the error AccountNotFound

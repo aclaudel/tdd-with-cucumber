@@ -24,6 +24,9 @@ public class Atm {
 
     public void withdraw(UUID accountId, int amountToWithdraw) {
         var account = accountRepository.getById(accountId);
+        if(account == null) {
+            throw new AccountNotFoundException();
+        }
         var newBalance = account.getBalance() - amountToWithdraw;
         account.setBalance(newBalance);
         accountRepository.save(account);
