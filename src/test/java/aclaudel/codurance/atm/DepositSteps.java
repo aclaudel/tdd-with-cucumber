@@ -1,7 +1,6 @@
 package aclaudel.codurance.atm;
 
 import aclaudel.codurance.context.AtmContext;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -11,11 +10,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 
-public class DepositSteps extends AtmContext {
+public class DepositSteps {
+
+    private final AtmContext atmContext = AtmContext.getInstance();
 
     @When("the deposit is made")
     public void the_deposit_is_made() {
-        atm.deposit(accountId, amount);
+        atmContext.atm.deposit(atmContext.accountId, atmContext.amount);
     }
 
     @Then("the deposit should generate the error AccountNotFound")
