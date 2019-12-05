@@ -4,9 +4,7 @@ import aclaudel.codurance.atm.AccountNotFoundException;
 import aclaudel.codurance.atm.NegativeMoneyAmountException;
 import io.cucumber.java.en.Then;
 
-import static aclaudel.codurance.atm.context.AtmContext.generatedError;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static aclaudel.codurance.atm.context.ErrorContext.assert_error_was_generated;
 
 public class ErrorSteps {
 
@@ -20,8 +18,4 @@ public class ErrorSteps {
         assert_error_was_generated(NegativeMoneyAmountException.class);
     }
 
-    private void assert_error_was_generated(Class<?> expectedError) {
-        assertNotNull(generatedError, "no error was thrown");
-        assertEquals(expectedError, generatedError.getClass());
-    }
 }

@@ -17,13 +17,12 @@ public class AtmContext {
     // mocks
     public static AccountRepository accountRepositoryMock;
 
-    // context
+    // sut
     public static Atm atm;
 
-    // test variables
+    // variables
     public static UUID accountId;
     public static int amount;
-    public static Exception generatedError;
 
     private AtmContext() {}
 
@@ -31,4 +30,5 @@ public class AtmContext {
         accountRepositoryMock = mock(AccountRepository.class);
         atm = new Atm(accountRepositoryMock);
     }
+
 }

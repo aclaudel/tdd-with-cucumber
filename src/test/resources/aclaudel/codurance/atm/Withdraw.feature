@@ -16,10 +16,12 @@ Feature: Money withdraw
   @done
   Scenario: The withdraw should fail if the account does not exist
     Given a not existing account
-    Then the withdraw should generate the error AccountNotFound
+    When we try to do the withdraw
+    Then the error AccountNotFound is generated
 
   @todo
   Scenario: The withdraw should fail if the amount is negative
     Given an account
     And a negative amount of money
-    Then the withdraw should generate the error NegativeMoneyAmount
+    When we try to do the withdraw
+    Then the error NegativeMoneyAmount is generated
