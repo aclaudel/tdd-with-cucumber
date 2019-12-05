@@ -11,8 +11,12 @@ public class Atm {
 
     public void deposit(UUID accountId, int amountToDeposit) {
         var account = accountRepository.getById(accountId);
-        if(account == null)
+        if(account == null) {
             throw new AccountNotFoundException();
+        }
+        if(amountToDeposit < 0) {
+            throw new NegativeMoneyAmountException();
+        }
         var newBalance = account.getBalance() + amountToDeposit;
         account.setBalance(newBalance);
         accountRepository.save(account);

@@ -52,6 +52,11 @@ public class DepositSteps {
         amountToDeposit = SOME_MONEY;
     }
 
+    @And("a negative amount of money")
+    public void a_negative_amount_of_money() {
+        amountToDeposit = -SOME_MONEY;
+    }
+
     @Given("a not existing account")
     public void a_not_existing_account() {
         accountId = AN_ACCOUNT_ID;
@@ -76,5 +81,10 @@ public class DepositSteps {
     @Then("the deposit should generate the error AccountNotFound")
     public void the_deposit_should_generate_the_error_account_not_found() {
         assertThrows(AccountNotFoundException.class, this::the_deposit_is_made);
+    }
+
+    @Then("the deposit should generate the error NegativeMoneyAmount")
+    public void the_deposit_should_generate_the_error_negative_money_amount() {
+        assertThrows(NegativeMoneyAmountException.class, this::the_deposit_is_made);
     }
 }

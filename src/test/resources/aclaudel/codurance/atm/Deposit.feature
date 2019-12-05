@@ -13,7 +13,7 @@ Feature: Money deposit
     Given a not existing account
     Then the deposit should generate the error AccountNotFound
 
-  @todo
+  @done
   Scenario: The deposit should fail if the amount is negative
     Given an account
     And a negative amount of money
