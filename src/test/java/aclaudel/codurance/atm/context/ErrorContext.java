@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ErrorContext {
     // variables
-    public static Exception generatedError;
+    private static Exception generatedError;
 
     public static void execute_and_save_generated_exception(Runnable step) {
         try {

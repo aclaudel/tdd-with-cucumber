@@ -2,7 +2,7 @@ package aclaudel.codurance.atm.steps;
 
 import io.cucumber.java.en.When;
 
-import static aclaudel.codurance.atm.context.AtmContext.*;
+import static aclaudel.codurance.atm.context.AtmContext.do_deposit;
 import static aclaudel.codurance.atm.context.ErrorContext.execute_and_save_generated_exception;
 
 
@@ -10,7 +10,7 @@ public class DepositSteps {
 
     @When("the deposit is made")
     public void the_deposit_is_made() {
-        atm.deposit(accountId, amount);
+        do_deposit();
     }
 
     @When("we try to do the deposit")

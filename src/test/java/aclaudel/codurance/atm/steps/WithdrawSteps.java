@@ -3,13 +3,13 @@ package aclaudel.codurance.atm.steps;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.When;
 
-import static aclaudel.codurance.atm.context.AtmContext.*;
+import static aclaudel.codurance.atm.context.AtmContext.do_withdraw;
 
 public class WithdrawSteps {
 
     @When("the withdraw is made")
     public void the_withdraw_is_made() {
-        atm.withdraw(accountId, amount);
+        do_withdraw();
     }
 
     @When("we try to do the withdraw")
