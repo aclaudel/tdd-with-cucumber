@@ -1,6 +1,5 @@
 package aclaudel.codurance.atm;
 
-import aclaudel.codurance.context.AtmContext;
 import io.cucumber.java.Before;
 
 public class GlobalHooks {

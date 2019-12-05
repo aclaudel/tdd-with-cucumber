@@ -1,8 +1,4 @@
-package aclaudel.codurance.context;
-
-import aclaudel.codurance.atm.AccountRepository;
-import aclaudel.codurance.atm.Atm;
-import io.cucumber.java.Before;
+package aclaudel.codurance.atm;
 
 import java.util.UUID;
 

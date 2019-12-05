@@ -1,6 +1,5 @@
 package aclaudel.codurance.atm;
 
-import aclaudel.codurance.context.AtmContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.mockito.ArgumentCaptor;
