@@ -1,5 +1,6 @@
-package aclaudel.codurance.atm;
+package aclaudel.codurance.atm.steps;
 
+import aclaudel.codurance.atm.context.AtmContext;
 import io.cucumber.java.en.When;
 
 public class WithdrawSteps {

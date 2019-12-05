@@ -1,12 +1,12 @@
-package aclaudel.codurance.atm;
+package aclaudel.codurance.atm.steps;
 
+import aclaudel.codurance.atm.AccountNotFoundException;
+import aclaudel.codurance.atm.NegativeMoneyAmountException;
+import aclaudel.codurance.atm.context.AtmContext;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 
 public class DepositSteps {

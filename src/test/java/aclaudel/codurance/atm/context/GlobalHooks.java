@@ -1,4 +1,4 @@
-package aclaudel.codurance.atm;
+package aclaudel.codurance.atm.context;
 
 import io.cucumber.java.Before;
 
