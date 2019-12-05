@@ -6,11 +6,6 @@ import io.cucumber.java.en.When;
 
 public class WithdrawSteps extends AtmContext {
 
-    @Before
-    public void before() {
-        super.before();
-    }
-
     @When("the withdraw is made")
     public void the_withdraw_is_made() {
         atm.withdraw(accountId, amount);

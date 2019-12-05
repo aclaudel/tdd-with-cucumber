@@ -13,11 +13,6 @@ import static org.mockito.Mockito.verify;
 
 public class DepositSteps extends AtmContext {
 
-    @Before
-    public void before() {
-        super.before();
-    }
-
     @When("the deposit is made")
     public void the_deposit_is_made() {
         atm.deposit(accountId, amount);

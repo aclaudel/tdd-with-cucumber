@@ -13,11 +13,6 @@ import static org.mockito.Mockito.verify;
 
 public class AccountSteps extends AtmContext {
 
-    @Before
-    public void before() {
-        super.before();
-    }
-
     @Given("an account")
     public void an_account() {
         an_account_with_an_initial_balance(DEFAULT_INITIAL_BALANCE);
@@ -30,12 +25,12 @@ public class AccountSteps extends AtmContext {
         given(accountRepositoryMock.getById(accountId)).willReturn(account);
     }
 
-    @And("a negative amount of money")
+    @Given("a negative amount of money")
     public void a_negative_amount_of_money() {
         an_amount_of_money_of_amount(NEGATIVE_AMOUNT_OF_MONEY);
     }
 
-    @And("an amount of money of {int}")
+    @Given("an amount of money of {int}")
     public void an_amount_of_money_of_amount(int amount) {
         this.amount = amount;
     }
