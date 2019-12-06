@@ -188,7 +188,7 @@ public void deposit(UUID accountId, int amountToDeposit) {
 }
 ```
 
-And make it pass !
+And make it pass !  
 ![passing-scenario](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/passing-scenario.png)
 
 The scenario is now implemented, so we can tag it as `@done` and start a new scenario from our backlog.
@@ -201,5 +201,7 @@ Scenario: The deposit should fail if the account does not exist
   ...
 ```
 
-If we run our tests again, then both scenarios will be executed.
+If we run our tests again, then both scenarios will be executed.  
 ![new-scenario-from-backlog](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/new-scenario-from-backlog.png)
+
+We can now incremently implement new scenario with a very short feedback loop on the hot features.
