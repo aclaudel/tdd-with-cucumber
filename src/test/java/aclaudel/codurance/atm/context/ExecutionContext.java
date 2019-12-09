@@ -3,13 +3,13 @@ package aclaudel.codurance.atm.context;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class ErrorContext {
+public class ExecutionContext {
     // variables
     private static Exception generatedError;
 
-    private ErrorContext() {}
+    private ExecutionContext() {}
 
-    public static void execute_and_save_generated_exception(Runnable step) {
+    public static void execute(Runnable step) {
         try {
             step.run();
         } catch (Exception e) {

@@ -4,7 +4,7 @@ import aclaudel.codurance.atm.AccountNotFoundException;
 import aclaudel.codurance.atm.NegativeMoneyAmountException;
 import io.cucumber.java.en.Then;
 
-import static aclaudel.codurance.atm.context.ErrorContext.assert_error_was_generated;
+import static aclaudel.codurance.atm.context.ExecutionContext.assert_error_was_generated;
 
 public class ErrorSteps {
 
