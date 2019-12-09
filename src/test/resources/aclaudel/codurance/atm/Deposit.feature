@@ -13,15 +13,17 @@ Feature: Money deposit
       | 10               | 100    | 110           |
       | -10              | 10     | 0             |
 
-  @done
+  @wip
   Scenario: The deposit should fail if the account does not exist
     Given a not existing account
-    When we try to do the deposit
+    Given an error is expected
+    When the deposit is made
     Then the error AccountNotFound is generated
 
-  @done
+  @wip
   Scenario: The deposit should fail if the amount is negative
     Given an account
     And a negative amount of money
-    When we try to do the deposit
+    Given an error is expected
+    When the deposit is made
     Then the error NegativeMoneyAmount is generated
