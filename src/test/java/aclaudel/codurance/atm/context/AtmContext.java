@@ -11,7 +11,6 @@ import static java.util.UUID.randomUUID;
 public abstract class AtmContext {
     // constants
     public static final int DEFAULT_INITIAL_BALANCE = 1;
-    public static final UUID AN_ACCOUNT_ID = randomUUID();
     public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
     // mocks
     private AccountRepository accountRepository;
@@ -34,7 +33,7 @@ public abstract class AtmContext {
     // non-specific methods
 
     public void setup_account(int initialBalance) {
-        accountId = AN_ACCOUNT_ID;
+        accountId = randomUUID();
         Account account = new Account(accountId, initialBalance);
         save_account(accountRepository, account);
     }
