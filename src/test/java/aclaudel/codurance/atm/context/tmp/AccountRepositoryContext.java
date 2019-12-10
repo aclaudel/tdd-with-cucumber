@@ -13,10 +13,6 @@ public abstract class AccountRepositoryContext implements AccountRepository {
         this.accountRepository = accountRepository;
     }
 
-    public AccountRepository get_repository() {
-        return accountRepository;
-    }
-
     public abstract void save_account(Account account);
     public abstract void assert_account_was_saved_with(UUID expectedId, int finalBalance);
 
