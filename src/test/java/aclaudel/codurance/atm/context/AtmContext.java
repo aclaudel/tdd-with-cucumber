@@ -34,7 +34,7 @@ public abstract class AtmContext {
 
     public void setup_account(int initialBalance) {
         accountId = randomUUID();
-        Account account = new Account(accountId, initialBalance);
+        var account = new Account(accountId, initialBalance);
         save_account(accountRepository, account);
     }
 

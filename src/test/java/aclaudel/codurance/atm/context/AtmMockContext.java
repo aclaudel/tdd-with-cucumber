@@ -24,12 +24,12 @@ public class AtmMockContext extends AtmContext {
     }
 
     @Override
-    protected void assert_account_was_saved_with(AccountRepository accountRepository, UUID expectedId, int finalBalance) {
-        ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
+    protected void assert_account_was_saved_with(AccountRepository accountRepository, UUID accountId, int finalBalance) {
+        var accountCaptor = ArgumentCaptor.forClass(Account.class);
         verify(accountRepository).save(accountCaptor.capture());
 
-        Account savedAccount = accountCaptor.getValue();
-        assertEquals(expectedId, savedAccount.getId());
+        var savedAccount = accountCaptor.getValue();
+        assertEquals(accountId, savedAccount.getId());
         assertEquals(finalBalance, savedAccount.getBalance());
     }
 
