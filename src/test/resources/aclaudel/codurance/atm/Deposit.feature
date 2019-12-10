@@ -1,7 +1,7 @@
 @delivery
 Feature: Money deposit
 
-  @wip
+  @done
   Scenario Outline: Deposit money to an account
     Given an account with an initial balance of <initial balance>
     And an amount of money of <amount>
