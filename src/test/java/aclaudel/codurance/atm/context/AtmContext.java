@@ -21,6 +21,7 @@ public abstract class AtmContext {
     private int amount;
 
     public AtmContext(AccountRepositoryContext accountRepositoryContext) {
+        // TODO retrieve the repository from a factory
         this.accountRepositoryContext = accountRepositoryContext;
         atm = new Atm(accountRepositoryContext);
     }
