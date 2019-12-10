@@ -2,20 +2,25 @@ package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.AccountNotFoundException;
 import aclaudel.codurance.atm.NegativeMoneyAmountException;
+import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.Then;
-
-import static aclaudel.codurance.atm.context.ErrorContext.assert_error_was_generated;
 
 public class ErrorSteps {
 
+    private ErrorContext errorContext;
+
+    public ErrorSteps(ErrorContext errorContext) {
+        this.errorContext = errorContext;
+    }
+
     @Then("the error AccountNotFound is generated")
     public void the_error_account_not_found_is_generated() {
-        assert_error_was_generated(AccountNotFoundException.class);
+        errorContext.assert_error_was_generated(AccountNotFoundException.class);
     }
 
     @Then("the error NegativeMoneyAmount is generated")
     public void the_error_negative_money_amount_is_generated() {
-        assert_error_was_generated(NegativeMoneyAmountException.class);
+        errorContext.assert_error_was_generated(NegativeMoneyAmountException.class);
     }
 
 }

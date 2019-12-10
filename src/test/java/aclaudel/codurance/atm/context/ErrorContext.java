@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ErrorContext {
     // variables
-    private static Exception generatedError;
+    private Exception generatedError;
 
-    private ErrorContext() {}
-
-    public static void execute_and_save_generated_exception(Runnable step) {
+    public void execute_and_save_generated_exception(Runnable step) {
         try {
             step.run();
         } catch (Exception e) {
@@ -17,7 +15,7 @@ public class ErrorContext {
         }
     }
 
-    public static void assert_error_was_generated(Class<?> expectedError) {
+    public void assert_error_was_generated(Class<?> expectedError) {
         assertNotNull(generatedError, "no error was thrown");
         assertEquals(expectedError, generatedError.getClass());
     }
