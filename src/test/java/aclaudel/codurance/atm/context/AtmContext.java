@@ -1,8 +1,8 @@
 package aclaudel.codurance.atm.context;
 
 import aclaudel.codurance.atm.Account;
-import aclaudel.codurance.atm.AccountRepository;
 import aclaudel.codurance.atm.Atm;
+import aclaudel.codurance.atm.context.tmp.AccountRepositoryContext;
 
 import java.util.UUID;
 
@@ -13,29 +13,23 @@ public abstract class AtmContext {
     public static final int DEFAULT_INITIAL_BALANCE = 1;
     public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
     // dependencies
-    private AccountRepository accountRepository;
+    private AccountRepositoryContext accountRepositoryContext;
     // sut
     private Atm atm;
     // variables
     private UUID accountId;
     private int amount;
 
-    public void setup() {
-        accountRepository = get_repository();
-        atm = new Atm(accountRepository);
+    public AtmContext(AccountRepositoryContext accountRepositoryContext) {
+        this.accountRepositoryContext = accountRepositoryContext;
+        atm = new Atm(accountRepositoryContext);
     }
 
-    // context specific methods
-    protected abstract AccountRepository get_repository();
-    protected abstract void save_account(AccountRepository accountRepository, Account account);
-    protected abstract void assert_account_was_saved_with(AccountRepository accountRepository, UUID expectedId, int finalBalance);
-
     // non-specific methods
-
     public void setup_account(int initialBalance) {
         accountId = randomUUID();
         var account = new Account(accountId, initialBalance);
-        save_account(accountRepository, account);
+        accountRepositoryContext.save_account(account);
     }
 
     public void setup_a_not_existing_account() {
@@ -47,7 +41,7 @@ public abstract class AtmContext {
     }
 
     public void assert_account_was_saved_with(int finalBalance) {
-        assert_account_was_saved_with(accountRepository, accountId, finalBalance);
+        accountRepositoryContext.assert_account_was_saved_with(accountId, finalBalance);
     }
 
     public void do_withdraw() {
