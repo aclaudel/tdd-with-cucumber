@@ -22,19 +22,22 @@ public abstract class AtmContext {
     private int amount;
 
     public void setup() {
-        accountRepository = getRepository();
+        accountRepository = get_repository();
         atm = new Atm(accountRepository);
     }
 
-    protected abstract AccountRepository getRepository();
+    // context specific methods
+    protected abstract AccountRepository get_repository();
+    protected abstract void save_account(AccountRepository accountRepository, Account account);
+    protected abstract void assert_account_was_saved_with(AccountRepository accountRepository, UUID expectedId, int finalBalance);
+
+    // non-specific methods
 
     public void setup_account(int initialBalance) {
         accountId = AN_ACCOUNT_ID;
         Account account = new Account(accountId, initialBalance);
         save_account(accountRepository, account);
     }
-
-    protected abstract void save_account(AccountRepository accountRepository, Account account);
 
     public void setup_a_not_existing_account() {
         accountId = randomUUID();
@@ -47,8 +50,6 @@ public abstract class AtmContext {
     public void assert_account_was_saved_with(int finalBalance) {
         assert_account_was_saved_with(accountRepository, accountId, finalBalance);
     }
-
-    protected abstract void assert_account_was_saved_with(AccountRepository accountRepository, UUID expectedId, int finalBalance);
 
     public void do_withdraw() {
         atm.withdraw(accountId, amount);

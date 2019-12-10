@@ -14,7 +14,7 @@ import static org.mockito.Mockito.verify;
 public class AtmMockContext extends AtmContext {
 
     @Override
-    protected AccountRepository getRepository() {
+    protected AccountRepository get_repository() {
         return mock(AccountRepository.class);
     }
 

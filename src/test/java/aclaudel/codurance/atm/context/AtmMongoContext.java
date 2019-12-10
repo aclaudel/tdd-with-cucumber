@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AtmMongoContext extends AtmContext {
 
     @Override
-    protected AccountRepository getRepository() {
+    protected AccountRepository get_repository() {
         return new MongoDBAccountRepository();
     }
 
