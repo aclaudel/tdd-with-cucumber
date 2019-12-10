@@ -11,8 +11,8 @@ public class AccountSteps {
 
     private final AtmContext atmContext;
 
-    public AccountSteps() {
-        atmContext = new AtmContext();
+    public AccountSteps(AtmContext atmContext) {
+        this.atmContext = atmContext;
     }
 
     @Given("an account")

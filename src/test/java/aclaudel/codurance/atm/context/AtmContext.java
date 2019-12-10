@@ -20,14 +20,14 @@ public class AtmContext {
     public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
 
     // mocks
-    private static AccountRepository accountRepositoryMock;
+    private AccountRepository accountRepositoryMock;
 
     // sut
-    private static Atm atm;
+    private Atm atm;
 
     // variables
-    private static UUID accountId;
-    private static int amount;
+    private UUID accountId;
+    private int amount;
 
     public void setup() {
         accountRepositoryMock = mock(AccountRepository.class);
