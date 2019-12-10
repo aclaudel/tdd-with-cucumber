@@ -1,21 +1,22 @@
 package aclaudel.codurance.atm.steps;
 
+import aclaudel.codurance.atm.context.AtmContext;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.When;
 
-import static aclaudel.codurance.atm.context.AtmContext.do_withdraw;
-
 public class WithdrawSteps {
 
-    private ErrorContext errorContext;
+    private final AtmContext atmContext;
+    private final ErrorContext errorContext;
 
-    public WithdrawSteps(ErrorContext errorContext) {
+    public WithdrawSteps(AtmContext atmContext, ErrorContext errorContext) {
+        this.atmContext = atmContext;
         this.errorContext = errorContext;
     }
 
     @When("the withdraw is made")
     public void the_withdraw_is_made() {
-        do_withdraw();
+        atmContext.do_withdraw();
     }
 
     @When("we try to do the withdraw")

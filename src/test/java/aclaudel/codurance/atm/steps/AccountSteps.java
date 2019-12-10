@@ -1,11 +1,19 @@
 package aclaudel.codurance.atm.steps;
 
+import aclaudel.codurance.atm.context.AtmContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-import static aclaudel.codurance.atm.context.AtmContext.*;
+import static aclaudel.codurance.atm.context.AtmContext.DEFAULT_INITIAL_BALANCE;
+import static aclaudel.codurance.atm.context.AtmContext.NEGATIVE_AMOUNT_OF_MONEY;
 
 public class AccountSteps {
+
+    private final AtmContext atmContext;
+
+    public AccountSteps() {
+        atmContext = new AtmContext();
+    }
 
     @Given("an account")
     public void an_account() {
@@ -14,7 +22,7 @@ public class AccountSteps {
 
     @Given("an account with an initial balance of {int}")
     public void an_account_with_an_initial_balance(int initialBalance) {
-        setup_account(initialBalance);
+        atmContext.setup_account(initialBalance);
     }
 
     @Given("a negative amount of money")
@@ -24,17 +32,17 @@ public class AccountSteps {
 
     @Given("an amount of money of {int}")
     public void an_amount_of_money_of(int amountOfMoney) {
-        setup_amount_of_money(amountOfMoney);
+        atmContext.setup_amount_of_money(amountOfMoney);
     }
 
     @Given("a not existing account")
     public void a_not_existing_account() {
-        setup_a_not_existing_account();
+        atmContext.setup_a_not_existing_account();
     }
 
     @Then("the final account balance is {int}")
     public void the_final_balance_has_been_updated(int finalBalance) {
-        assert_account_was_saved_with(finalBalance);
+        atmContext.assert_account_was_saved_with(finalBalance);
     }
 
 }

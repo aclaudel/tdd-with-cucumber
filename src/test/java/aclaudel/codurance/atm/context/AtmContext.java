@@ -29,29 +29,27 @@ public class AtmContext {
     private static UUID accountId;
     private static int amount;
 
-    private AtmContext() {}
-
-    public static void setup() {
+    public void setup() {
         accountRepositoryMock = mock(AccountRepository.class);
         atm = new Atm(accountRepositoryMock);
     }
 
-    public static void setup_account(int initialBalance) {
+    public void setup_account(int initialBalance) {
         accountId = AN_ACCOUNT_ID;
         Account account = new Account(accountId, initialBalance);
         given(accountRepositoryMock.getById(accountId)).willReturn(account);
     }
 
-    public static void setup_a_not_existing_account() {
+    public void setup_a_not_existing_account() {
         accountId = AN_ACCOUNT_ID;
         given(accountRepositoryMock.getById(accountId)).willReturn(null);
     }
 
-    public static void setup_amount_of_money(int amountOfMoney) {
+    public void setup_amount_of_money(int amountOfMoney) {
         amount = amountOfMoney;
     }
 
-    public static void assert_account_was_saved_with(int finalBalance) {
+    public void assert_account_was_saved_with(int finalBalance) {
         ArgumentCaptor<Account> accountCaptor = ArgumentCaptor.forClass(Account.class);
         verify(accountRepositoryMock).save(accountCaptor.capture());
 
@@ -60,11 +58,11 @@ public class AtmContext {
         assertEquals(finalBalance, savedAccount.getBalance());
     }
 
-    public static void do_withdraw() {
+    public void do_withdraw() {
         atm.withdraw(accountId, amount);
     }
 
-    public static void do_deposit() {
+    public void do_deposit() {
         atm.deposit(accountId, amount);
     }
 }
