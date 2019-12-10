@@ -12,7 +12,7 @@ public abstract class AtmContext {
     // constants
     public static final int DEFAULT_INITIAL_BALANCE = 1;
     public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
-    // mocks
+    // dependencies
     private AccountRepository accountRepository;
     // sut
     private Atm atm;
