@@ -9,12 +9,16 @@ public class Context {
     private final ErrorContext errorContext;
 
     public Context() {
-        if(MONGO_CONTEXT.equals(System.getProperty(ATM_CONTEXT_PROPERTY))) {
+        if(isMongoContext()) {
             atmContext = new AtmMongoDBContext();
         } else {
             atmContext = new AtmMockContext();
         }
         errorContext = new ErrorContext();
+    }
+
+    private boolean isMongoContext() {
+        return MONGO_CONTEXT.equals(System.getProperty(ATM_CONTEXT_PROPERTY));
     }
 
     public AtmContext atmContext() {
