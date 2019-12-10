@@ -1,16 +1,17 @@
 package aclaudel.codurance.atm.steps;
 
-import aclaudel.codurance.atm.context.AtmMockContext;
+import aclaudel.codurance.atm.context.AtmContext;
+import aclaudel.codurance.atm.context.AtmMongoContext;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.When;
 
 
 public class DepositSteps {
 
-    private final AtmMockContext atmContext;
+    private final AtmContext atmContext;
     private final ErrorContext errorContext;
 
-    public DepositSteps(AtmMockContext atmContext, ErrorContext errorContext) {
+    public DepositSteps(AtmMongoContext atmContext, ErrorContext errorContext) {
         this.atmContext = atmContext;
         this.errorContext = errorContext;
     }
