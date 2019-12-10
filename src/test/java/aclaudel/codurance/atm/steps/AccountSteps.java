@@ -1,8 +1,7 @@
 package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.AtmMongoDBContext;
-import aclaudel.codurance.atm.context.Factory;
+import aclaudel.codurance.atm.context.Contexts;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
@@ -11,11 +10,7 @@ import static aclaudel.codurance.atm.context.AtmMockContext.NEGATIVE_AMOUNT_OF_M
 
 public class AccountSteps {
 
-    private final AtmContext atmContext;
-
-    public AccountSteps(AtmMongoDBContext atmContext) {
-        this.atmContext = Factory.getAtmContext();
-    }
+    private final AtmContext atmContext = Contexts.atmContext();
 
     @Given("an account")
     public void an_account() {

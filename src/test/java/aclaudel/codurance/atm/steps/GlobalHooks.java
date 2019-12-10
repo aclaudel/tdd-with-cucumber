@@ -1,17 +1,12 @@
 package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.AtmMongoDBContext;
-import aclaudel.codurance.atm.context.Factory;
+import aclaudel.codurance.atm.context.Contexts;
 import io.cucumber.java.Before;
 
 public class GlobalHooks {
 
-    private final AtmContext atmContext;
-
-    public GlobalHooks(AtmMongoDBContext atmContext) {
-        this.atmContext = Factory.getAtmContext();;
-    }
+    private final AtmContext atmContext = Contexts.atmContext();
 
     @Before
     public void before() {
