@@ -2,94 +2,27 @@ package aclaudel.codurance.atm.context;
 
 import aclaudel.codurance.atm.Account;
 import aclaudel.codurance.atm.AccountRepository;
-import aclaudel.codurance.atm.Atm;
-import com.mongodb.client.MongoClients;
-import org.bson.Document;
+import aclaudel.codurance.atm.infrastructure.MongoDBAccountRepository;
 
 import java.util.UUID;
 
-import static com.mongodb.client.model.Filters.eq;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AtmMongoContext implements AtmContext {
-
-    // mocks
-    private AccountRepository accountRepository;
-
-    // sut
-    private Atm atm;
-
-    // variables
-    private UUID accountId;
-    private int amount;
+public class AtmMongoContext extends AtmContext {
 
     @Override
-    public void setup() {
-        var collection = MongoClients.create()
-                .getDatabase("atm")
-                .getCollection("accounts");
-
-        accountRepository = new AccountRepository() {
-            @Override
-            public void save(Account account) {
-                var document = new Document();
-                document.append("id", account.getId());
-                document.append("balance", account.getBalance());
-
-                var previousDocument = collection.find()
-                        .filter(eq("id", accountId))
-                        .first();
-                System.out.println(document);
-                if(previousDocument == null) {
-                    collection.insertOne(document);
-                } else {
-                    collection.replaceOne(eq("id", account.getId()), document);
-                }
-            }
-
-            @Override
-            public Account getById(UUID accountId) {
-                var document = collection.find()
-                        .filter(eq("id", accountId))
-                        .first();
-                if(document == null) {
-                    return null;
-                }
-                return new Account(document.get("id", UUID.class), document.get("balance", Integer.class));
-            }
-        };
-        atm = new Atm(accountRepository);
+    protected AccountRepository getRepository() {
+        return new MongoDBAccountRepository();
     }
 
     @Override
-    public void setup_account(int initialBalance) {
-        accountId = AN_ACCOUNT_ID;
-        Account account = new Account(accountId, initialBalance);
+    protected void save_account(AccountRepository accountRepository, Account account) {
         accountRepository.save(account);
     }
 
     @Override
-    public void setup_a_not_existing_account() {
-        accountId = UUID.randomUUID();
+    protected void assert_account_was_saved_with(AccountRepository accountRepository, UUID expectedId, int finalBalance) {
+        assertEquals(finalBalance, accountRepository.getById(expectedId).getBalance());
     }
 
-    @Override
-    public void setup_amount_of_money(int amountOfMoney) {
-        amount = amountOfMoney;
-    }
-
-    @Override
-    public void assert_account_was_saved_with(int finalBalance) {
-        assertEquals(finalBalance, accountRepository.getById(accountId).getBalance());
-    }
-
-    @Override
-    public void do_withdraw() {
-        atm.withdraw(accountId, amount);
-    }
-
-    @Override
-    public void do_deposit() {
-        atm.deposit(accountId, amount);
-    }
 }

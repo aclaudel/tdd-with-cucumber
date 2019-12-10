@@ -2,6 +2,7 @@ package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
 import aclaudel.codurance.atm.context.AtmMongoContext;
+import aclaudel.codurance.atm.context.Factory;
 import io.cucumber.java.Before;
 
 public class GlobalHooks {
@@ -9,7 +10,7 @@ public class GlobalHooks {
     private final AtmContext atmContext;
 
     public GlobalHooks(AtmMongoContext atmContext) {
-        this.atmContext = atmContext;
+        this.atmContext = Factory.getAtmContext();;
     }
 
     @Before
