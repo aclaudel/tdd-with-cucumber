@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AtmMongoContext extends AtmContext {
+public class AtmMongoDBContext extends AtmContext {
 
     @Override
     protected AccountRepository get_repository() {

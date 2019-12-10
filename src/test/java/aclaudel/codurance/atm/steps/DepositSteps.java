@@ -1,7 +1,7 @@
 package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.AtmMongoContext;
+import aclaudel.codurance.atm.context.AtmMongoDBContext;
 import aclaudel.codurance.atm.context.ErrorContext;
 import aclaudel.codurance.atm.context.Factory;
 import io.cucumber.java.en.When;
@@ -12,7 +12,7 @@ public class DepositSteps {
     private final AtmContext atmContext;
     private final ErrorContext errorContext;
 
-    public DepositSteps(AtmMongoContext atmContext, ErrorContext errorContext) {
+    public DepositSteps(AtmMongoDBContext atmContext, ErrorContext errorContext) {
         this.atmContext = Factory.getAtmContext();;
         this.errorContext = errorContext;
     }
