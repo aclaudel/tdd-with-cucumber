@@ -1,15 +1,15 @@
 package aclaudel.codurance.atm.steps;
 
-import aclaudel.codurance.atm.context.AtmContext;
+import aclaudel.codurance.atm.context.AtmMockContext;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.When;
 
 public class WithdrawSteps {
 
-    private final AtmContext atmContext;
+    private final AtmMockContext atmContext;
     private final ErrorContext errorContext;
 
-    public WithdrawSteps(AtmContext atmContext, ErrorContext errorContext) {
+    public WithdrawSteps(AtmMockContext atmContext, ErrorContext errorContext) {
         this.atmContext = atmContext;
         this.errorContext = errorContext;
     }

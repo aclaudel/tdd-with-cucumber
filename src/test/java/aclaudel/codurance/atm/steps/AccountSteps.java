@@ -1,17 +1,17 @@
 package aclaudel.codurance.atm.steps;
 
-import aclaudel.codurance.atm.context.AtmContext;
+import aclaudel.codurance.atm.context.AtmMockContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-import static aclaudel.codurance.atm.context.AtmContext.DEFAULT_INITIAL_BALANCE;
-import static aclaudel.codurance.atm.context.AtmContext.NEGATIVE_AMOUNT_OF_MONEY;
+import static aclaudel.codurance.atm.context.AtmMockContext.DEFAULT_INITIAL_BALANCE;
+import static aclaudel.codurance.atm.context.AtmMockContext.NEGATIVE_AMOUNT_OF_MONEY;
 
 public class AccountSteps {
 
-    private final AtmContext atmContext;
+    private final AtmMockContext atmContext;
 
-    public AccountSteps(AtmContext atmContext) {
+    public AccountSteps(AtmMockContext atmContext) {
         this.atmContext = atmContext;
     }
 
