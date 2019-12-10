@@ -4,7 +4,7 @@ import io.cucumber.java.Before;
 
 public class GlobalHooks {
 
-    private AtmContext atmContext;
+    private final AtmContext atmContext;
 
     public GlobalHooks(AtmContext atmContext) {
         this.atmContext = atmContext;

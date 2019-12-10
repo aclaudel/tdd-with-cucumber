@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 
 public class ErrorSteps {
 
-    private ErrorContext errorContext;
+    private final ErrorContext errorContext;
 
     public ErrorSteps(ErrorContext errorContext) {
         this.errorContext = errorContext;
