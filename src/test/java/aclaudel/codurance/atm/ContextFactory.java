@@ -16,15 +16,19 @@ public class ContextFactory {
         errorContext = new ErrorContext();
     }
 
-    private AtmContext getAtmContext() {
+    private static AtmContext getAtmContext() {
         if(isMongoContext()) {
             return new AtmContext(new MongoDBAccountRepositoryContext());
         } else {
-            return new AtmContext(new MockAccountRepositoryContext());
+            return defaultAtmContext();
         }
     }
 
-    private boolean isMongoContext() {
+    private static AtmContext defaultAtmContext() {
+        return new AtmContext(new MockAccountRepositoryContext());
+    }
+
+    private static boolean isMongoContext() {
         return MONGO_CONTEXT.equals(System.getProperty(ATM_CONTEXT_PROPERTY));
     }
 
