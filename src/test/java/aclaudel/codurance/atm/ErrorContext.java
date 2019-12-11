@@ -7,9 +7,9 @@ public class ErrorContext {
     // variables
     private Exception generatedError;
 
-    public void execute_and_save_generated_exception(Runnable step) {
+    public void execute_and_save_generated_exception(Runnable codeToExecute) {
         try {
-            step.run();
+            codeToExecute.run();
         } catch (Exception e) {
             generatedError = e;
         }
