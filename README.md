@@ -204,4 +204,4 @@ Scenario: The deposit should fail if the account does not exist
 If we run our tests again, then both scenarios will be executed.  
 ![new-scenario-from-backlog](https://github.com/aclaudel/tdd-with-cucumber/blob/master/src/main/resources/img/new-scenario-from-backlog.png)
 
-We can now incremently implement new scenario with a very short feedback loop on the hot features.
+We can now incrementally implement new scenario with a very short feedback loop on the hot features.
