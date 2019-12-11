@@ -2,7 +2,7 @@ package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.AccountNotFoundException;
 import aclaudel.codurance.atm.NegativeMoneyAmountException;
-import aclaudel.codurance.atm.context.Context;
+import aclaudel.codurance.atm.context.ContextFactory;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.Then;
 
@@ -11,8 +11,8 @@ public class ErrorSteps {
 
     private final ErrorContext errorContext;
 
-    public ErrorSteps(Context context) {
-        errorContext = context.errorContext();
+    public ErrorSteps(ContextFactory contextFactory) {
+        errorContext = contextFactory.errorContext();
     }
 
     @Then("the error AccountNotFound is generated")

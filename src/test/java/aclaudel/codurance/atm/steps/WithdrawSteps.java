@@ -1,7 +1,7 @@
 package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.Context;
+import aclaudel.codurance.atm.context.ContextFactory;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.When;
 
@@ -10,9 +10,9 @@ public class WithdrawSteps {
     private final AtmContext atmContext;
     private final ErrorContext errorContext;
 
-    public WithdrawSteps(Context context) {
-        atmContext = context.atmContext();
-        errorContext = context.errorContext();
+    public WithdrawSteps(ContextFactory contextFactory) {
+        atmContext = contextFactory.atmContext();
+        errorContext = contextFactory.errorContext();
     }
 
     @When("the withdraw is made")

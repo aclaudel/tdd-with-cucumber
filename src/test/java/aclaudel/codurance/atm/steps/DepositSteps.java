@@ -1,7 +1,7 @@
 package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.Context;
+import aclaudel.codurance.atm.context.ContextFactory;
 import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.When;
 
@@ -11,9 +11,9 @@ public class DepositSteps {
     private final AtmContext atmContext;
     private final ErrorContext errorContext;
 
-    public DepositSteps(Context context) {
-        atmContext = context.atmContext();
-        errorContext = context.errorContext();
+    public DepositSteps(ContextFactory contextFactory) {
+        atmContext = contextFactory.atmContext();
+        errorContext = contextFactory.errorContext();
     }
 
     @When("the deposit is made")

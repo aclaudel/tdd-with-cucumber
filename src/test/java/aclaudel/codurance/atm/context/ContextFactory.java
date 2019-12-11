@@ -3,7 +3,7 @@ package aclaudel.codurance.atm.context;
 import aclaudel.codurance.atm.context.infrastructure.MockAccountRepositoryContext;
 import aclaudel.codurance.atm.context.infrastructure.MongoDBAccountRepositoryContext;
 
-public class Context {
+public class ContextFactory {
 
     public static final String ATM_CONTEXT_PROPERTY = "atm.context";
     public static final String MONGO_CONTEXT = "mongo";
@@ -11,7 +11,7 @@ public class Context {
     private final AtmContext atmContext;
     private final ErrorContext errorContext;
 
-    public Context() {
+    public ContextFactory() {
         atmContext = getAtmContext();
         errorContext = new ErrorContext();
     }

@@ -1,7 +1,7 @@
 package aclaudel.codurance.atm.steps;
 
 import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.Context;
+import aclaudel.codurance.atm.context.ContextFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
@@ -13,8 +13,8 @@ public class AccountSteps {
 
     private final AtmContext atmContext;
 
-    public AccountSteps(Context context) {
-        atmContext = context.atmContext();
+    public AccountSteps(ContextFactory contextFactory) {
+        atmContext = contextFactory.atmContext();
     }
 
     @Given("an account")
