@@ -1,4 +1,4 @@
-package aclaudel.codurance.atm.context.infrastructure;
+package aclaudel.codurance.atm.context;
 
 import aclaudel.codurance.atm.Account;
 import aclaudel.codurance.atm.AccountRepository;

@@ -2,6 +2,7 @@ package aclaudel.codurance.atm.context.infrastructure;
 
 import aclaudel.codurance.atm.Account;
 import aclaudel.codurance.atm.AccountRepository;
+import aclaudel.codurance.atm.context.AccountRepositoryContext;
 import org.mockito.ArgumentCaptor;
 
 import java.util.UUID;
