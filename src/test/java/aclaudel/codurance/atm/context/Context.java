@@ -1,7 +1,7 @@
 package aclaudel.codurance.atm.context;
 
-import aclaudel.codurance.atm.context.tmp.MockAccountRepositoryContext;
-import aclaudel.codurance.atm.context.tmp.MongoDBAccountRepositoryContext;
+import aclaudel.codurance.atm.context.infrastructure.MockAccountRepositoryContext;
+import aclaudel.codurance.atm.context.infrastructure.MongoDBAccountRepositoryContext;
 
 public class Context {
 

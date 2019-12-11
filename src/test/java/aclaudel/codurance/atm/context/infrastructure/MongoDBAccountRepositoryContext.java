@@ -1,4 +1,4 @@
-package aclaudel.codurance.atm.context.tmp;
+package aclaudel.codurance.atm.context.infrastructure;
 
 import aclaudel.codurance.atm.Account;
 import aclaudel.codurance.atm.infrastructure.MongoDBAccountRepository;
