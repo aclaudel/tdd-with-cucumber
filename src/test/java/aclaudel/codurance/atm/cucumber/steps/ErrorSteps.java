@@ -1,9 +1,9 @@
-package aclaudel.codurance.atm.steps;
+package aclaudel.codurance.atm.cucumber.steps;
 
 import aclaudel.codurance.atm.AccountNotFoundException;
+import aclaudel.codurance.atm.ContextFactory;
+import aclaudel.codurance.atm.ErrorContext;
 import aclaudel.codurance.atm.NegativeMoneyAmountException;
-import aclaudel.codurance.atm.context.ContextFactory;
-import aclaudel.codurance.atm.context.ErrorContext;
 import io.cucumber.java.en.Then;
 
 

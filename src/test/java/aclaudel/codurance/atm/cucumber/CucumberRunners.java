@@ -1,4 +1,4 @@
-package aclaudel.codurance.atm;
+package aclaudel.codurance.atm.cucumber;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = "pretty",
         strict = true)
-public class AtmCucumberRunners {
+public class CucumberRunners {
 
     @RunWith(Cucumber.class)
     @CucumberOptions(

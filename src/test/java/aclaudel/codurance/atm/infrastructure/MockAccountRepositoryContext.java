@@ -1,8 +1,8 @@
-package aclaudel.codurance.atm.context.infrastructure;
+package aclaudel.codurance.atm.infrastructure;
 
 import aclaudel.codurance.atm.Account;
 import aclaudel.codurance.atm.AccountRepository;
-import aclaudel.codurance.atm.context.AccountRepositoryContext;
+import aclaudel.codurance.atm.AccountRepositoryContext;
 import org.mockito.ArgumentCaptor;
 
 import java.util.UUID;

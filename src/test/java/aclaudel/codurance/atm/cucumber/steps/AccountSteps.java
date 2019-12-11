@@ -1,12 +1,12 @@
-package aclaudel.codurance.atm.steps;
+package aclaudel.codurance.atm.cucumber.steps;
 
-import aclaudel.codurance.atm.context.AtmContext;
-import aclaudel.codurance.atm.context.ContextFactory;
+import aclaudel.codurance.atm.AtmContext;
+import aclaudel.codurance.atm.ContextFactory;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
-import static aclaudel.codurance.atm.context.AtmContext.DEFAULT_INITIAL_BALANCE;
-import static aclaudel.codurance.atm.context.AtmContext.NEGATIVE_AMOUNT_OF_MONEY;
+import static aclaudel.codurance.atm.AtmContext.DEFAULT_INITIAL_BALANCE;
+import static aclaudel.codurance.atm.AtmContext.NEGATIVE_AMOUNT_OF_MONEY;
 
 
 public class AccountSteps {

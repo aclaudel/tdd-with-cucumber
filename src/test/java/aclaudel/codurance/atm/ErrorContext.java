@@ -1,4 +1,4 @@
-package aclaudel.codurance.atm.context;
+package aclaudel.codurance.atm;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

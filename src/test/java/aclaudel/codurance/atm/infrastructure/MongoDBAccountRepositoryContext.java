@@ -1,8 +1,7 @@
-package aclaudel.codurance.atm.context.infrastructure;
+package aclaudel.codurance.atm.infrastructure;
 
 import aclaudel.codurance.atm.Account;
-import aclaudel.codurance.atm.context.AccountRepositoryContext;
-import aclaudel.codurance.atm.infrastructure.MongoDBAccountRepository;
+import aclaudel.codurance.atm.AccountRepositoryContext;
 
 import java.util.UUID;
 

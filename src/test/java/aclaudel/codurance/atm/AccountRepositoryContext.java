@@ -1,7 +1,4 @@
-package aclaudel.codurance.atm.context;
-
-import aclaudel.codurance.atm.Account;
-import aclaudel.codurance.atm.AccountRepository;
+package aclaudel.codurance.atm;
 
 import java.util.UUID;
 
