@@ -1,5 +1,8 @@
 package aclaudel.codurance.atm.context;
 
+import aclaudel.codurance.atm.context.tmp.MockAccountRepositoryContext;
+import aclaudel.codurance.atm.context.tmp.MongoDBAccountRepositoryContext;
+
 public class Context {
 
     public static final String ATM_CONTEXT_PROPERTY = "atm.context";
@@ -9,12 +12,16 @@ public class Context {
     private final ErrorContext errorContext;
 
     public Context() {
-        if(isMongoContext()) {
-            atmContext = new AtmMongoDBContext();
-        } else {
-            atmContext = new AtmMockContext();
-        }
+        atmContext = getAtmContext();
         errorContext = new ErrorContext();
+    }
+
+    private AtmContext getAtmContext() {
+        if(isMongoContext()) {
+            return new AtmContext(new MongoDBAccountRepositoryContext());
+        } else {
+            return new AtmContext(new MockAccountRepositoryContext());
+        }
     }
 
     private boolean isMongoContext() {

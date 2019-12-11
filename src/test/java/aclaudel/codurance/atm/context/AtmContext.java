@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
 
-public abstract class AtmContext {
+public class AtmContext {
     // constants
     public static final int DEFAULT_INITIAL_BALANCE = 1;
     public static final int NEGATIVE_AMOUNT_OF_MONEY = -10;
@@ -21,12 +21,10 @@ public abstract class AtmContext {
     private int amount;
 
     public AtmContext(AccountRepositoryContext accountRepositoryContext) {
-        // TODO retrieve the repository from a factory
         this.accountRepositoryContext = accountRepositoryContext;
         atm = new Atm(accountRepositoryContext.getAccountRepository());
     }
 
-    // non-specific methods
     public void setup_account(int initialBalance) {
         accountId = randomUUID();
         var account = new Account(accountId, initialBalance);
