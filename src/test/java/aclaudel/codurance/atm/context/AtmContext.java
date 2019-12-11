@@ -23,7 +23,7 @@ public abstract class AtmContext {
     public AtmContext(AccountRepositoryContext accountRepositoryContext) {
         // TODO retrieve the repository from a factory
         this.accountRepositoryContext = accountRepositoryContext;
-        atm = new Atm(accountRepositoryContext);
+        atm = new Atm(accountRepositoryContext.getAccountRepository());
     }
 
     // non-specific methods

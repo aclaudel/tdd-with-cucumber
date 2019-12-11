@@ -5,7 +5,7 @@ import aclaudel.codurance.atm.AccountRepository;
 
 import java.util.UUID;
 
-public abstract class AccountRepositoryContext implements AccountRepository {
+public abstract class AccountRepositoryContext {
 
     protected final AccountRepository accountRepository;
 
@@ -16,14 +16,9 @@ public abstract class AccountRepositoryContext implements AccountRepository {
     public abstract void save_account(Account account);
     public abstract void assert_account_was_saved_with(UUID expectedId, int finalBalance);
 
-    @Override
-    public void save(Account account) {
-        accountRepository.save(account);
+    public AccountRepository getAccountRepository() {
+        return accountRepository;
     }
 
-    @Override
-    public Account getById(UUID accountId) {
-        return accountRepository.getById(accountId);
-    }
 }
 
