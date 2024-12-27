@@ -36,4 +36,4 @@ jobs:
           comment-summary-in-pr: always
           fail-on-severity: low
           allow-licenses: Apache-2.0
-        #   retry-on-snapshot-warnings: true
+          retry-on-snapshot-warnings: true
