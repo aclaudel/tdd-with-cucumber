@@ -35,5 +35,5 @@ jobs:
         with:
           comment-summary-in-pr: always
           fail-on-severity: low
-          allow-licenses: MIT, Apache-2.0
+          allow-licenses: Apache-2.0
         #   retry-on-snapshot-warnings: true
